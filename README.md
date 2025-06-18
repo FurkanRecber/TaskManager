@@ -1,79 +1,76 @@
-# .NET Starter TaskManager 🚀
 
-A robust and scalable .NET starter TaskManager following **Onion Architecture**, integrated with essential tools like **OpenTelemetry**, **Swagger**, and **Rate Limiter** to provide a production-ready foundation for building modern web applications.
+# Görev Yöneticisi (TaskManager)
 
-## Features 🛠️
+Bu proje, Piton Technology’nin Backend Yazılım Geliştirme biriminde stajyer olarak değerlendirilmek üzere hazırlanmıştır. Proje, kullanıcıların günlük, haftalık ve aylık görevlerini yönetmelerine olanak sağlayan bir görev yönetim sistemidir.
 
-✅ **Onion Architecture** - Clean and maintainable code structure  
-✅ **OpenTelemetry** - Distributed tracing and monitoring  
-✅ **Swagger** - API documentation for easy testing and interaction  
-✅ **Rate Limiting** - Prevent abuse and improve performance  
-✅ **Dependency Injection** - Built-in support for decoupling dependencies  
-✅ **Logging** - Structured logging with built-in integrations  
-✅ **Docker Support** - Containerized development and deployment  
+## Projenin Amacı
 
-## Getting Started 🚀
+Kullanıcının yapacağı işleri periyodik olarak raporlayabildiği, modern yazılım geliştirme ilkeleriyle hazırlanmış küçük ama anlamlı bir uygulama ortaya koymak. Bu proje ile hem teknik becerilerimi göstermek hem de gerçek dünya projelerinde kullanılan araçları tanımak istedim.
 
-### **Prerequisites**
-Ensure you have the following installed before running the project:
-- [.NET SDK](https://dotnet.microsoft.com/download) (Latest version)
-- [Docker](https://www.docker.com/get-started) (Optional, for containerized deployment)
-- [PostgreSQL](https://www.postgresql.org/) (or any supported database)
+## Kullanılan Teknolojiler
 
-### **Installation & Setup**
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/onrcanogul/dotnet-webapi-starter-TaskManager.git
-   cd your-repo-folder
-   ```
+- **ASP.NET Core Web API**: Projenin ana çatısını oluşturan API yapısı.
+- **JWT Authentication**: Kimlik doğrulama için güvenli token bazlı çözüm.
+- **Swagger**: API’yi test etmek ve belgelemek için entegre edildi.
+- **Entity Framework Core**: ORM çözümü olarak kullanıldı.
+- **MSSQL**: Veritabanı çözümü olarak tercih edildi. (İstenirse MongoDB uyarlanabilir.)
+- **Docker (opsiyonel)**: Uygulamanın container ortamında çalışması için yapılandırıldı.
 
-2. Install dependencies:
-   ```sh
+## Katmanlı Mimari
+
+Proje, sürdürülebilirliği ve test edilebilirliği artırmak adına **Onion Architecture** prensipleriyle tasarlanmıştır:
+
+- `Domain`: Temel iş kuralları ve modeller
+- `Application`: Uygulama iş mantığı
+- `Infrastructure`: Dış servislerle iletişim (örneğin veri erişimi)
+- `API`: Sunum ve istemcilerle etkileşim katmanı
+
+## Kimlik Doğrulama
+
+JWT ile kullanıcı kimliği doğrulanır. Kullanıcılar sadece token ile erişim sağlayabilir. Bu sistem güvenliği artırır ve modern web uygulamalarıyla uyumludur.
+
+## API Belgeleri
+
+Swagger arayüzü sayesinde API uç noktaları kolayca test edilebilir:
+- `GET /tasks`
+- `POST /tasks`
+- `PUT /tasks/{id}`
+- `DELETE /tasks/{id}`
+- `POST /auth/login`
+
+## Docker Desteği
+
+Docker kullanılarak uygulama daha taşınabilir hale getirildi. Geliştirme ve dağıtım süreçleri için `docker-compose.yml` yapılandırması hazırlandı.
+
+## Öğrendiklerim ve Notlar
+
+- Projenin performansını artırmak için araştırmalarım sırasında **cache mekanizmalarını** (örneğin: `IMemoryCache`, `DistributedCache`) inceledim. Ancak, projenin kapsamı gereği bu özelliği entegre etmedim. İleride bu özelliği ekleyerek performans iyileştirmesi planlıyorum.
+- `OpenTelemetry` ile dağıtık izleme (distributed tracing) üzerine çalıştım ancak sadece yapılandırma seviyesinde bıraktım.
+- Projede `Rate Limiter` gibi production seviyesinde önlemlerin nasıl uygulanabileceğini araştırıp belgeledim.
+
+## Kurulum ve Başlatma
+
+1. Gerekli paketleri yükleyin:
+   ```bash
    dotnet restore
    ```
 
-3. Configure environment variables (e.g., database connection, telemetry settings).
+2. Veritabanı yapılandırmasını yapın (`appsettings.json` içinde bağlantı stringi).
 
-4. Run the project:
-   ```sh
-   dotnet run
+3. Uygulamayı başlatın:
+   ```bash
+   dotnet run --project TaskManager.API
    ```
 
-### **Docker Setup**
-To run the project in a **Docker container**, use:
-```sh
-docker build -t your-app-name .
-docker run -p 5000:5000 your-app-name
-```
+4. Swagger arayüzüne şu adresten ulaşabilirsiniz:
+   ```
+   https://localhost:{port}/swagger
+   ```
 
-## Architecture 🏗️
+## Sonuç
 
-This TaskManager follows the **Onion Architecture**, which enforces separation of concerns and enables maintainability.
+Bu projeyi geliştirirken sadece kod yazmakla kalmadım; aynı zamanda gerçek bir yazılım geliştirme sürecinde karşılaşılabilecek senaryoları da deneyimledim. Yeni teknolojiler öğrenerek hem kendimi geliştirdim hem de iş akışlarını daha iyi anladım.
 
-📂 **Core Layer**  
-- Business logic  
-- Domain models  
+---
 
-📂 **Infrastructure Layer**  
-- Database interactions  
-- External service integrations  
-
-📂 **Application Layer**  
-- Use cases  
-- Service interfaces  
-
-📂 **API Layer**  
-- Controllers  
-- Middleware  
-
-## Swagger UI 📖
-After running the project, access Swagger UI at:
-```
-http://localhost:5000/swagger
-```
-
-
-## Contributing 🤝
-Feel free to contribute! Fork the repo, create a new branch, and submit a PR.
-
-Happy coding! 🎯
+Projeyi GitHub üzerinden paylaşarak değerlendirmeye aldığınız için teşekkür ederim. Geri bildiriminizi sabırsızlıkla bekliyorum!
