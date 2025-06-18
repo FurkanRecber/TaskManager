@@ -58,7 +58,6 @@ Docker kullanılarak uygulama daha taşınabilir hale getirildi. Geliştirme ve 
 ##  Öğrendiklerim ve Notlar
 
 - Projenin performansını artırmak için araştırmalarım sırasında **cache mekanizmalarını** (örneğin: `IMemoryCache`, `DistributedCache`) inceledim. Ancak, projenin kapsamı gereği bu özelliği entegre etmedim. İleride bu özelliği ekleyerek performans iyileştirmesi planlıyorum.
-- `OpenTelemetry` ile dağıtık izleme (distributed tracing) üzerine çalıştım ancak sadece yapılandırma seviyesinde bıraktım.
 - Projede `Rate Limiter` gibi production seviyesinde önlemlerin nasıl uygulanabileceğini araştırıp belgeledim.
 
 ## Kurulum ve Başlatma
@@ -80,7 +79,7 @@ Docker kullanılarak uygulama daha taşınabilir hale getirildi. Geliştirme ve 
    https://localhost:{port}/swagger
    ```
 
-## 🎯onuç
+## Sonuç
 
 Bu projeyi geliştirirken sadece kod yazmakla kalmadım; aynı zamanda gerçek bir yazılım geliştirme sürecinde karşılaşılabilecek senaryoları da deneyimledim. Yeni teknolojiler öğrenerek hem kendimi geliştirdim hem de iş akışlarını daha iyi anladım.
 
