@@ -29,20 +29,33 @@ Proje, sürdürülebilirliği ve test edilebilirliği artırmak adına **Onion A
 
 JWT ile kullanıcı kimliği doğrulanır. Kullanıcılar sadece token ile erişim sağlayabilir. Bu sistem güvenliği artırır ve modern web uygulamalarıyla uyumludur.
 
-## API Belgeleri
+## API Yetkinlikleri
 
-Swagger arayüzü sayesinde API uç noktaları kolayca test edilebilir:
-- `GET /tasks`
-- `POST /tasks`
-- `PUT /tasks/{id}`
-- `DELETE /tasks/{id}`
-- `POST /auth/login`
+API, aşağıdaki modülleri kapsar:
 
-## Docker Desteği
+-  Görev (Task) işlemleri: görev ekleme, silme, güncelleme, listeleme, filtreleme (haftalık, aylık vs.)
+-  Etiket (Tag) yönetimi: etiket oluşturma, görev ile ilişkilendirme
+-  Yorum (Comment) yönetimi: görevlere yorum ekleme/güncelleme/silme
+-  Kullanıcı işlemleri: kayıt, giriş, refresh token ile tekrar giriş
+-  JWT tabanlı kimlik doğrulama
+
+### Örnek Uç Noktalar
+
+| Yöntem | URL | Açıklama |
+|--------|-----|----------|
+| `POST` | `/api/User/login` | Kullanıcı girişi (JWT döner) |
+| `GET`  | `/api/Task/get-weekly` | Haftalık görevleri listeler |
+| `POST` | `/api/Task/add-tag/{id}/{tagId}` | Göreve etiket ekler |
+| `GET`  | `/api/Tag/paged/{page}/{size}` | Etiketleri sayfalı olarak listeler |
+
+Tüm uç noktalar ve detaylı istek örnekleri için Swagger arayüzünü kullanabilirsiniz:
+ `https://localhost:{port}/swagger`
+
+##  Docker Desteği
 
 Docker kullanılarak uygulama daha taşınabilir hale getirildi. Geliştirme ve dağıtım süreçleri için `docker-compose.yml` yapılandırması hazırlandı.
 
-## Öğrendiklerim ve Notlar
+##  Öğrendiklerim ve Notlar
 
 - Projenin performansını artırmak için araştırmalarım sırasında **cache mekanizmalarını** (örneğin: `IMemoryCache`, `DistributedCache`) inceledim. Ancak, projenin kapsamı gereği bu özelliği entegre etmedim. İleride bu özelliği ekleyerek performans iyileştirmesi planlıyorum.
 - `OpenTelemetry` ile dağıtık izleme (distributed tracing) üzerine çalıştım ancak sadece yapılandırma seviyesinde bıraktım.
@@ -67,7 +80,7 @@ Docker kullanılarak uygulama daha taşınabilir hale getirildi. Geliştirme ve 
    https://localhost:{port}/swagger
    ```
 
-## Sonuç
+## 🎯onuç
 
 Bu projeyi geliştirirken sadece kod yazmakla kalmadım; aynı zamanda gerçek bir yazılım geliştirme sürecinde karşılaşılabilecek senaryoları da deneyimledim. Yeni teknolojiler öğrenerek hem kendimi geliştirdim hem de iş akışlarını daha iyi anladım.
 
